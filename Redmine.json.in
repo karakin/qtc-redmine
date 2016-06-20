@@ -1,0 +1,11 @@
+{
+    \"Name\" : \"Redmine\",
+    \"Version\" : \"0.0.1\",
+    \"CompatVersion\" : \"0.0.1\",
+    \"Vendor\" : \"Nikolaj Karakin\",
+    \"Copyright\" : \"\",
+    \"License\" : \"MIT license\",
+    \"Description\" : \"Provides simple integration with Redmine project management system\",
+    \"Url\" : \"\",
+    $$dependencyList
+}
