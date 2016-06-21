@@ -20,6 +20,9 @@ public:
     void extensionsInitialized();
     ShutdownFlag aboutToShutdown();
 
+private:
+    void initLanguage();
+
 private slots:
     void triggerAction();
 };

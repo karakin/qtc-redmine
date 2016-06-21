@@ -13,6 +13,9 @@ OTHER_FILES += \
     README.md \
     Redmine.json.in
 
+TRANSLATIONS += \
+    translation/redmine_ru.ts
+
 # Qt Creator linking
 
 ## set the QTC_SOURCE environment variable to override the setting here

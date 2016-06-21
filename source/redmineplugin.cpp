@@ -13,7 +13,11 @@
 #include <QMainWindow>
 #include <QMenu>
 
+#include <QDebug>
+
 #include <QtPlugin>
+
+#include <QTranslator>
 
 using namespace Redmine::Internal;
 
@@ -39,6 +43,8 @@ bool RedminePlugin::initialize(const QStringList &arguments, QString *errorStrin
 
     Q_UNUSED(arguments)
     Q_UNUSED(errorString)
+
+    initLanguage();
 
     QAction *action = new QAction(tr("Redmine Action"), this);
     Core::Command *cmd = Core::ActionManager::registerAction(action, Constants::ACTION_ID,
@@ -67,6 +73,28 @@ ExtensionSystem::IPlugin::ShutdownFlag RedminePlugin::aboutToShutdown()
     // Disconnect from signals that are not needed during shutdown
     // Hide UI (if you add UI that is not in the main window directly)
     return SynchronousShutdown;
+}
+
+void RedminePlugin::initLanguage()
+{
+    const QString &language = Core::ICore::userInterfaceLanguage();
+
+    if( language.isEmpty() )
+        return;
+
+    QStringList paths = QStringList() << Core::ICore::resourcePath ()
+                                      << Core::ICore::userResourcePath();
+
+    const QString &trFile = QLatin1String( QString( "redmine_" ).arg( language ) );
+    QTranslator *translator = new QTranslator( this );
+    foreach( const QString& path, paths )
+    {
+        if (translator->load( trFile, path + QLatin1String ("/translations") ) )
+        {
+            qApp->installTranslator( translator );
+            break;
+        }
+    }
 }
 
 void RedminePlugin::triggerAction()
