@@ -7,6 +7,8 @@
 namespace Redmine {
 namespace Internal {
 
+class RedmineMode;
+
 class RedminePlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
@@ -22,6 +24,9 @@ public:
 
 private:
     void initLanguage();
+
+private:
+    RedmineMode *m_mode;
 
 private slots:
     void triggerAction();

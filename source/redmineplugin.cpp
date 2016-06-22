@@ -1,6 +1,8 @@
 #include "redmineplugin.h"
 #include "redmineconstants.h"
 
+#include "redminemode.h"
+
 #include <coreplugin/icore.h>
 #include <coreplugin/icontext.h>
 #include <coreplugin/actionmanager/actionmanager.h>
@@ -21,9 +23,9 @@
 
 using namespace Redmine::Internal;
 
-RedminePlugin::RedminePlugin()
+RedminePlugin::RedminePlugin() :
+    m_mode( 0 )
 {
-    // Create your members
 }
 
 RedminePlugin::~RedminePlugin()
@@ -57,6 +59,10 @@ bool RedminePlugin::initialize(const QStringList &arguments, QString *errorStrin
     menu->addAction(cmd);
     Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMenu(menu);
 
+    m_mode = new RedmineMode;
+    m_mode->setWidget( new QWidget );
+    addAutoReleasedObject( m_mode );
+
     return true;
 }
 
@@ -85,7 +91,7 @@ void RedminePlugin::initLanguage()
     QStringList paths = QStringList() << Core::ICore::resourcePath ()
                                       << Core::ICore::userResourcePath();
 
-    const QString &trFile = QLatin1String( QString( "redmine_" ).arg( language ) );
+    const QString &trFile = QLatin1String( "redmine_" ) + language;
     QTranslator *translator = new QTranslator( this );
     foreach( const QString& path, paths )
     {

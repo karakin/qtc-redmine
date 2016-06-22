@@ -2,11 +2,14 @@ DEFINES += REDMINE_LIBRARY
 
 # Redmine files
 
-SOURCES += source/redmineplugin.cpp
+SOURCES += source/redmineplugin.cpp \
+    source/redminemode.cpp
 
 HEADERS += source/redmineplugin.h \
         source/redmine_global.h \
-        source/redmineconstants.h
+        source/redmineconstants.h \
+    source/redmineicons.h \
+    source/redminemode.h
 
 OTHER_FILES += \
     LICENSE.md \
@@ -51,3 +54,6 @@ QTC_PLUGIN_RECOMMENDS += \
 ###### End _dependencies.pri contents ######
 
 include($$QTCREATOR_SOURCES/src/qtcreatorplugin.pri)
+
+RESOURCES += \
+    source/redmine.qrc

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/redmine">
+        <file>images/mode_redmine.png</file>
+        <file>images/mode_redmine@2x.png</file>
+        <file>images/mode_redmine_mask.png</file>
+        <file>images/mode_redmine_mask@2x.png</file>
+    </qresource>
+</RCC>
