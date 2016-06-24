@@ -2,6 +2,7 @@
 #include "redmineconstants.h"
 
 #include "redminemode.h"
+#include "redmineoptionspage.h"
 
 #include <coreplugin/icore.h>
 #include <coreplugin/icontext.h>
@@ -47,6 +48,7 @@ bool RedminePlugin::initialize(const QStringList &arguments, QString *errorStrin
     Q_UNUSED(errorString)
 
     initLanguage();
+    initOptionsPage();
 
     QAction *action = new QAction(tr("Redmine Action"), this);
     Core::Command *cmd = Core::ActionManager::registerAction(action, Constants::ACTION_ID,
@@ -101,6 +103,12 @@ void RedminePlugin::initLanguage()
             break;
         }
     }
+}
+
+void RedminePlugin::initOptionsPage()
+{
+    m_optionsPage = new RedmineOptionsPage;
+    addAutoReleasedObject( m_optionsPage );
 }
 
 void RedminePlugin::triggerAction()

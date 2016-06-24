@@ -8,6 +8,7 @@ namespace Redmine {
 namespace Internal {
 
 class RedmineMode;
+class RedmineOptionsPage;
 
 class RedminePlugin : public ExtensionSystem::IPlugin
 {
@@ -24,9 +25,11 @@ public:
 
 private:
     void initLanguage();
+    void initOptionsPage();
 
 private:
     RedmineMode *m_mode;
+    RedmineOptionsPage *m_optionsPage;
 
 private slots:
     void triggerAction();

@@ -3,13 +3,17 @@ DEFINES += REDMINE_LIBRARY
 # Redmine files
 
 SOURCES += source/redmineplugin.cpp \
-    source/redminemode.cpp
+    source/redminemode.cpp \
+    source/redmineconfigwidget.cpp \
+    source/redmineoptionspage.cpp
 
 HEADERS += source/redmineplugin.h \
         source/redmine_global.h \
         source/redmineconstants.h \
     source/redmineicons.h \
-    source/redminemode.h
+    source/redminemode.h \
+    source/redmineconfigwidget.h \
+    source/redmineoptionspage.h
 
 OTHER_FILES += \
     LICENSE.md \
@@ -57,3 +61,6 @@ include($$QTCREATOR_SOURCES/src/qtcreatorplugin.pri)
 
 RESOURCES += \
     source/redmine.qrc
+
+FORMS += \
+    source/redmineconfigwidget.ui
