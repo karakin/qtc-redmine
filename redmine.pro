@@ -1,3 +1,5 @@
+QT += network
+
 DEFINES += REDMINE_LIBRARY
 
 # Redmine files
@@ -5,7 +7,8 @@ DEFINES += REDMINE_LIBRARY
 SOURCES += source/redmineplugin.cpp \
     source/redminemode.cpp \
     source/redmineconfigwidget.cpp \
-    source/redmineoptionspage.cpp
+    source/redmineoptionspage.cpp \
+    source/redminemanager.cpp
 
 HEADERS += source/redmineplugin.h \
         source/redmine_global.h \
@@ -13,7 +16,8 @@ HEADERS += source/redmineplugin.h \
     source/redmineicons.h \
     source/redminemode.h \
     source/redmineconfigwidget.h \
-    source/redmineoptionspage.h
+    source/redmineoptionspage.h \
+    source/redminemanager.h
 
 OTHER_FILES += \
     LICENSE.md \

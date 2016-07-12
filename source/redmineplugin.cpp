@@ -4,12 +4,16 @@
 #include "redminemode.h"
 #include "redmineoptionspage.h"
 
+#include "redminemanager.h"
+
 #include <coreplugin/icore.h>
 #include <coreplugin/icontext.h>
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/coreconstants.h>
+
+#include <coreplugin/modemanager.h>
 
 #include <QAction>
 #include <QMessageBox>
@@ -25,7 +29,8 @@
 using namespace Redmine::Internal;
 
 RedminePlugin::RedminePlugin() :
-    m_mode( 0 )
+    m_mode( 0 ),
+    m_redmineManager( new RedmineManager )
 {
 }
 
@@ -33,6 +38,8 @@ RedminePlugin::~RedminePlugin()
 {
     // Unregister objects from the plugin manager's object pool
     // Delete members
+    delete m_redmineManager;
+    m_redmineManager = 0;
 }
 
 bool RedminePlugin::initialize(const QStringList &arguments, QString *errorString)
@@ -64,6 +71,8 @@ bool RedminePlugin::initialize(const QStringList &arguments, QString *errorStrin
     m_mode = new RedmineMode;
     m_mode->setWidget( new QWidget );
     addAutoReleasedObject( m_mode );
+
+    connect( Core::ModeManager::instance(), SIGNAL(currentModeChanged(Core::Id,Core::Id)), SLOT(modeChanged(Core::Id,Core::Id)) );
 
     return true;
 }
@@ -116,4 +125,11 @@ void RedminePlugin::triggerAction()
     QMessageBox::information(Core::ICore::mainWindow(),
                              tr("Action Triggered"),
                              tr("This is an action from Redmine."));
+}
+
+void RedminePlugin::modeChanged(Core::Id mode, Core::Id old)
+{
+    Q_UNUSED(old)
+    if (mode == m_mode->id()) {
+    }
 }

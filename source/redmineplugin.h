@@ -3,12 +3,15 @@
 #include "redmine_global.h"
 
 #include <extensionsystem/iplugin.h>
+#include <coreplugin/id.h>
 
 namespace Redmine {
 namespace Internal {
 
 class RedmineMode;
 class RedmineOptionsPage;
+
+class RedmineManager;
 
 class RedminePlugin : public ExtensionSystem::IPlugin
 {
@@ -30,9 +33,12 @@ private:
 private:
     RedmineMode *m_mode;
     RedmineOptionsPage *m_optionsPage;
+    RedmineManager *m_redmineManager;
+
 
 private slots:
     void triggerAction();
+    void modeChanged( Core::Id mode, Core::Id old );
 };
 
 } // namespace Internal
