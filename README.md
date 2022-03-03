@@ -1,7 +1,7 @@
-#Qt Creator Redmine Integration
+Qt Creator Redmine Integration
 
-##Introduction
+Introduction
 Plugin integrates some [Redmine](http://www.redmine.org/ "Redmine") functionality into Qt Creator IDE.
 
-##Features
+Features
 * There is no features at this moment
